@@ -1,40 +1,42 @@
-'use client'
-import React, { useState } from 'react'
-import styles from '../categories/ExpandableList.module.css'
+"use client";
+import React, { useState } from "react";
+import { ExpandableListProp } from "../interfaces/interface";
+import { listItems } from "../interfaces/interface";
 
-interface ExpandableListProp{
-  items: listItems[]
-}
+const ExpandableList = ({ items }: ExpandableListProp) => {
+  const [expandedId, setExpandedId] = useState<number | null>(null);
 
-interface listItems{
-  id: number;
-  title: string;
-  content: string;
-}
-
-const ExpandableList = ({items}: ExpandableListProp) => {
- const [expandedId, setExpandedId] = useState<number | null>(null); //declares a state variable
- 
- const toggleItem = (id: number) => {
-  setExpandedId(expandedId === id ? null : id) //updates the expandedId to 'id' if it's not equal to null(clicking on an empty space)
- }
+  const toggleItem = (id: number) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   return (
-    <ul className={styles.list}>
+    <ul className="list-none p-0 m-4 mt-[40px]">
       {items.map((item) => (
-        <li key={item.id}
-        className= {`${styles.listItem} ${expandedId === item.id ? styles.expanded : '' }`}
-        onClick={() => toggleItem(item.id)}
+        <li
+          key={item.id}
+          className={`bg-gray-100 m-2.5 mb-[25px] p-[15px] cursor-pointer transition-all duration-1000 ease-in-out overflow-hidden rounded-[5%] ${
+            expandedId === item.id ? "h-[215px]" : "h-[50px]"
+          }`}
+          onClick={() => toggleItem(item.id)}
         >
-          <h3>{item.title}</h3>
-          <div className={`${styles.content} ${styles.expanded}`}>
+          <h3 className="m-0">{item.title}</h3>
+          <div
+            className={`transition-all duration-500 ease-in-out relative ${
+              expandedId === item.id
+                ? "max-h-[500px] opacity-100 mt-[15px]"
+                : "max-h-0 opacity-0"
+            }`}
+          >
             <p>{item.content}</p>
-            <button className={styles.button}>Action</button>
+            <button className="absolute bottom-[-128px] right-[10px] py-[5px] px-[30px] bg-blue-500 text-white border-none cursor-pointer transition-colors duration-300 ease-in-out rounded-[10%] hover:bg-blue-700">
+              Action
+            </button>
           </div>
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default ExpandableList
+export default ExpandableList;

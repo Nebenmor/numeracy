@@ -1,4 +1,4 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -25,5 +25,28 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  } */
+
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  
+  @layer base {
+    html, body {
+      @apply relative h-full;
+    }
+  
+    body {
+      @apply bg-gray-200 font-sans text-sm text-black m-0 p-0;
+    }
   }
-}
+  
+  @layer components {
+    .swiper-slide img {
+      @apply block w-full h-full object-cover rounded-[5%];
+    }
+  
+    .slide-color {
+      @apply bg-purple-500 w-4/5 h-4/5;
+    }
+  }
