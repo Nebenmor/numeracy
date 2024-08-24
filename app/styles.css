@@ -1,0 +1,188 @@
+/* styles.css */
+.page-container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .bg{
+    background-color: #EAE8E4;
+  }
+  
+  .right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .left-section {
+    padding: 2rem;
+    order: 2;
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Swapping order for desktop view */
+  @media (min-width: 768px) {
+    .page-container {
+      flex-direction: row-reverse;
+    }
+    
+    .left-section {
+      width: 40%;
+    }
+    
+    .right-section {
+      width: 60%;
+      height: 20vh;
+    }
+  }
+  
+  .button {
+    background-color: blue;
+    color: white;
+    border-radius: 25px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+  
+  .image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .image {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    transform: scale(0);
+  }
+  
+  .image-10 { width: 10px; height: 10px; }
+  .image-20 { width: 20px; height: 20px; }
+  .image-40 { width: 40px; height: 40px; }
+  .image-60 { width: 50px; height: 60px; }
+  .image-80 { width: 80px; height: 80px; }
+  
+  .title, .paragraph {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  
+  /* Animation classes */
+  .animate .image {
+    animation: grow-stable-shrink 5s forwards;
+  }
+  
+  .animate .button {
+    animation: unfold 2s forwards;
+  }
+  
+  .animate .title, .animate .paragraph {
+    animation: text-appear 2s forwards;
+  }
+  
+  .animate {
+    animation: page-exit 3s 3s forwards;
+  }
+  
+  /* Position each image individually */
+  .image:nth-child(1) { left: 0; bottom: 0; }
+  .image:nth-child(2) { left: 20px; bottom: 20px; }
+  .image:nth-child(3) { left: 50px; bottom: 50px; }
+  .image:nth-child(4) { left: 100px; bottom: 100px; }
+  .image:nth-child(5) { left: 150px; bottom: 150px; }
+  .image:nth-child(6) { left: 200px; bottom: 0; }
+  .image:nth-child(7) { left: 220px; bottom: 20px; }
+  .image:nth-child(8) { left: 250px; bottom: 50px; }
+  .image:nth-child(9) { left: 300px; bottom: 100px; }
+  .image:nth-child(10) { left: 350px; bottom: 150px; }
+  .image:nth-child(11) { left: 400px; bottom: 0; }
+  .image:nth-child(12) { left: 420px; bottom: 20px; }
+  .image:nth-child(13) { left: 450px; bottom: 50px; }
+  .image:nth-child(14) { left: 500px; bottom: 100px; }
+  .image:nth-child(15) { left: 550px; bottom: 150px; }
+  .image:nth-child(16) { left: 600px; bottom: 0; }
+  .image:nth-child(17) { left: 620px; bottom: 20px; }
+  .image:nth-child(18) { left: 650px; bottom: 50px; }
+  
+  @media (max-width: 767px) {
+    .page-container {
+      flex-direction: column-reverse;
+    }
+  
+    .left-section {
+      order: 1;
+    }
+  
+    .right-section {
+      order: 2;
+    }
+  
+    .image-container {
+      gap: 30px;
+    }
+  
+    /* Adjust positioning for mobile view */
+    .image { position: static; }
+  }
+  
+  /* Animation keyframes */
+  @keyframes grow-stable-shrink {
+    0% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+    60% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  
+  @keyframes unfold {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
+  @keyframes text-appear {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes page-exit {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
